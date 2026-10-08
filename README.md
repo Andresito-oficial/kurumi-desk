@@ -1,4 +1,4 @@
-kurumi-desk/
+"kurumi-desk/
 ├── README.md
 ├── LICENSE
 ├── hypr/
@@ -26,4 +26,4 @@ kurumi-desk/
 │   └── ...
 ├── systemd/
 │   └── user/
-└── install.sh
+└── install.sh"
