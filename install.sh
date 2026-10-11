@@ -97,6 +97,35 @@ install_file() {
     ok "$dst"
 }
 
+# ─── Instalación de dependencias según gestor de paquetes ───────────────────
+install_deps() {
+    local pkgs=("$@")
+    local missing=()
+    local pm="${PM:-}"
+
+    [[ -z "$pm" ]] && { warn "Gestor de paquetes no reconocido, instala a mano: ${pkgs[*]}"; return 0; }
+
+    for pkg in "${pkgs[@]}"; do
+        case "$pm" in
+            pacman) pacman -Qq "$pkg" &>/dev/null || missing+=("$pkg") ;;
+            apt)    dpkg -s "$pkg"   &>/dev/null || missing+=("$pkg") ;;
+            dnf)    rpm -q "$pkg"    &>/dev/null || missing+=("$pkg") ;;
+            zypper) rpm -q "$pkg"    &>/dev/null || missing+=("$pkg") ;;
+        esac
+    done
+
+    [[ ${#missing[@]} -eq 0 ]] && return 0
+
+    info "Instalando dependencias: ${missing[*]}"
+
+    case "$pm" in
+        pacman) run sudo pacman -S --needed --noconfirm "${missing[@]}" ;;
+        apt)    run sudo apt-get install -y "${missing[@]}" ;;
+        dnf)    run sudo dnf install -y "${missing[@]}" ;;
+        zypper) run sudo zypper install -y "${missing[@]}" ;;
+    esac
+}
+
 # ─── Detección de entorno ───────────────────────────────────────────────────
 detect_de() {
     local de=""
@@ -131,6 +160,14 @@ BANNER
 
 DE="$(detect_de)"
 info "Entorno detectado: ${DE:-desconocido}"
+
+# Detectar gestor de paquetes (para install_deps)
+for _pm in pacman apt dnf zypper; do
+    command -v "$_pm" &>/dev/null && { PM="$_pm"; break; }
+done
+PM="${PM:-}"
+info "Gestor de paquetes: ${PM:-desconocido}"
+
 info "Backup (si hace falta) irá a: $BACKUP_DIR"
 
 # ─── 1. GTK Themes ──────────────────────────────────────────────────────────
@@ -141,7 +178,6 @@ install_dir "$REPO_DIR/gtk/Zaphkiel-Dark" "$HOME/.themes/Zaphkiel-Dark"
 # ─── 2. GTK4 / libadwaita user config ───────────────────────────────────────
 step "GTK4 / libadwaita (config de usuario)"
 run mkdir -p "$HOME/.config/gtk-4.0"
-# El symlink lo gestiona zaphkiel-sync, aquí sólo nos aseguramos de que existe el directorio
 if [[ -f "$HOME/.themes/Zaphkiel/gtk-4.0/gtk.css" ]]; then
     run ln -sf "$HOME/.themes/Zaphkiel/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
     ok "$HOME/.config/gtk-4.0/gtk.css → Zaphkiel (default)"
@@ -164,8 +200,16 @@ for s in "$REPO_DIR"/scripts/*.sh; do
 done
 
 # ─── 6. systemd user services ──────────────────────────────────────────────
-step "systemd user services (zaphkiel-sync + hypr-sound-daemon)"
+step "systemd user services"
 run mkdir -p "$HOME/.config/systemd/user"
+
+# Dependencias del daemon de sonido (según gestor de paquetes)
+case "$PM" in
+    pacman) install_deps python-dbus-next libcanberra libcanberra-gtk3 ;;
+    apt)    install_deps python3-dbus-next libcanberra-gtk3-module libcanberra-gtk3-0 ;;
+    dnf)    install_deps python3-dbus-next libcanberra-gtk3 ;;
+    *)      install_deps python-dbus-next libcanberra-gtk3 ;;
+esac
 
 # Zaphkiel sync
 if [[ -f "$REPO_DIR/systemd/user/zaphkiel-sync.service" ]]; then
@@ -177,12 +221,6 @@ fi
 if [[ -f "$REPO_DIR/systemd/user/hypr-sound-daemon.service" ]]; then
     install_file "$REPO_DIR/systemd/user/hypr-sound-daemon.service" \
                  "$HOME/.config/systemd/user/hypr-sound-daemon.service"
-    
-    # Comprobar dependencias
-    if ! pacman -Qq python-dbus-next libcanberra libcanberra-gtk3 &>/dev/null; then
-        warn "Faltan dependencias para el daemon de sonido."
-        warn "Instálalas: sudo pacman -S python-dbus-next libcanberra libcanberra-gtk3"
-    fi
 fi
 
 run systemctl --user daemon-reload
@@ -190,7 +228,7 @@ if (( ! DRY_RUN )); then
     systemctl --user enable --now zaphkiel-sync.service 2>/dev/null \
         && ok "zaphkiel-sync.service activo" \
         || warn "No se pudo activar zaphkiel-sync (revísalo a mano)"
-        
+
     systemctl --user enable --now hypr-sound-daemon.service 2>/dev/null \
         && ok "hypr-sound-daemon.service activo" \
         || warn "No se pudo activar hypr-sound-daemon (revísalo a mano)"
@@ -200,7 +238,24 @@ fi
 case "$DE" in
     gnome)
         step "GNOME — temas GTK, Shell y sonido"
-        # ... (el resto de la sección GNOME se queda igual)
+
+        # Verificar extensión User Themes
+        if ! gnome-extensions list --enabled 2>/dev/null | grep -q "user-theme@gnome-shell-extensions"; then
+            warn "Extensión 'User Themes' no activa."
+            warn "  Actívala:  gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com"
+        fi
+
+        if (( ! DRY_RUN )); then
+            gsettings set org.gnome.desktop.interface gtk-theme "Zaphkiel"
+            gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+            gsettings set org.gnome.desktop.sound theme-name "Moesound_iori"
+            gsettings set org.gnome.desktop.sound event-sounds true
+            gsettings set org.gnome.shell.extensions.user-theme name "Zaphkiel" 2>/dev/null \
+                || warn "No se pudo setear el tema de Shell (¿User Themes?)"
+            ok "gsettings aplicados"
+        else
+            info "[dry] gsettings set gtk-theme/sound/user-theme"
+        fi
         ;;
 
     plasma)
@@ -217,7 +272,7 @@ case "$DE" in
         install_dir "$REPO_DIR/waybar"  "$HOME/.config/waybar"
         install_dir "$REPO_DIR/swaync"  "$HOME/.config/swaync"
 
-        # Dar permisos al daemon y al script de logout
+        # Permisos para el daemon de sonido y el script de logout
         if [[ -f "$HOME/.config/hypr/scripts/hypr-sound-daemon.py" ]]; then
             run chmod +x "$HOME/.config/hypr/scripts/hypr-sound-daemon.py"
             ok "hypr-sound-daemon.py ejecutable"
@@ -227,13 +282,14 @@ case "$DE" in
             ok "logout-sound.sh ejecutable"
         fi
         ;;
+
     *)
         warn "Entorno desconocido. Los archivos se han instalado,"
         warn "pero tendrás que aplicar los temas a mano."
         ;;
 esac
 
-# ─── 8. GIFs (opcional, sólo se copian si el usuario quiere) ────────────────
+# ─── 8. GIFs (opcional) ─────────────────────────────────────────────────────
 if [[ -d "$REPO_DIR/gifs" ]]; then
     step "GIFs de bloqueo (opcional)"
     printf "${C_YELLOW}?${C_RESET} ¿Copiar GIFs a ~/.config/hypr/lock_frames? [s/N] "
@@ -247,7 +303,7 @@ if [[ -d "$REPO_DIR/gifs" ]]; then
     fi
 fi
 
-# ─── 9. Backup final (si hicimos alguno) ────────────────────────────────────
+# ─── 9. Backup final ────────────────────────────────────────────────────────
 if [[ -d "$BACKUP_DIR" ]]; then
     step "Backup"
     ok "Tus archivos anteriores: $BACKUP_DIR"
@@ -265,6 +321,7 @@ $( [[ "$DE" == "plasma"   ]] && echo "Plasma → Aplica el tema desde Preferenci
 Notas:
   · Los sonidos de evento se aplican a pestañas NUEVAS de apps GTK3.
   · El tema Shell de GNOME cambia tras relogin (Wayland) o Alt+F2 r (X11).
+  · El daemon de sonido de Hyprland se inicia automáticamente con systemd.
   · Si algo falla: backup en $BACKUP_DIR
 
 ¿Dudas? Lee el README.md o la guía en docs/.
