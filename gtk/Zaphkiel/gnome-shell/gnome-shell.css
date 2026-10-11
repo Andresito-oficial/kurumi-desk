@@ -1,0 +1,654 @@
+/* ============================================================
+   Zaphkiel · GNOME Shell (día)
+   Fondo #faf4ec · Texto #c2185b · Acento #c2185b
+   ============================================================ */
+
+stage {
+    font-family: "Cantarell", "Sans", sans-serif;
+    font-size: 11pt;
+    color: #c2185b;
+
+    -st-accent-color: #c2185b;
+    -st-accent-fg-color: #ffffff;
+    -st-accent-color-light: #e05a8f;
+    -st-accent-color-dark: #8b0d47;
+    -st-accent-color-transparent: rgba(194, 24, 91, 0.30);
+
+    -st-icon-colors: #ffffff;
+    -st-icon-colors-hc: #ffffff;
+}
+
+/* ─── Barra superior ──────────────────────────────────────── */
+#panel {
+    background-color: #faf4ec;
+    color: #c2185b;
+    border-bottom: 1px solid #e8ded0;
+    font-weight: bold;
+    height: 2em;
+}
+#panel:overview {
+    background-color: transparent;
+    border-bottom: none;
+}
+#panel .panel-button { color: #c2185b; }
+#panel .panel-button:hover {
+    background-color: #f2e6d9;
+    color: #a01453;
+}
+#panel .panel-button:active,
+#panel .panel-button:checked {
+    background-color: #c2185b;
+    color: #ffffff;
+}
+
+/* ─── Overview ────────────────────────────────────────────── */
+#overview { background-color: rgba(250, 244, 236, 0.90); }
+.workspace-thumbnail {
+    background-color: #f2e6d9;
+    border: 1px solid #e8ded0;
+}
+.workspace-thumbnail-indicator { border: 2px solid #c2185b; }
+
+.search-entry {
+    background-color: #fffdf9;
+    color: #c2185b;
+    border: 1px solid #e8ded0;
+    border-radius: 6px;
+}
+.search-entry:focus {
+    border-color: #c2185b;
+    box-shadow: 0 0 0 2px rgba(194, 24, 91, 0.25);
+}
+
+/* ─── Dash ────────────────────────────────────────────────── */
+#dash {
+    background-color: rgba(242, 230, 217, 0.85);
+    border: 1px solid #e8ded0;
+    border-radius: 12px;
+}
+.dash-item-container .app-well-app:hover .overview-icon,
+.dash-item-container .app-well-app:focus .overview-icon {
+    background-color: rgba(194, 24, 91, 0.20);
+}
+
+/* ─── Notificaciones ──────────────────────────────────────── */
+.notification-banner {
+    background-color: #faf4ec;
+    color: #c2185b;
+    border: 1px solid #e8ded0;
+    border-radius: 8px;
+}
+.notification-banner:hover { background-color: #f2e6d9; }
+
+/* ─── Calendario ──────────────────────────────────────────── */
+.clock-display-box .clock { color: #c2185b; }
+
+#calendarArea {
+    background-color: #faf4ec;
+    color: #c2185b;
+}
+.calendar { color: #c2185b; }
+.calendar .calendar-day-base:hover { background-color: #f2e6d9; }
+.calendar .calendar-today {
+    background-color: #c2185b;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+/* ════════════════════════════════════════════════════════════
+   POPUPS — todos los menús desplegables
+   ════════════════════════════════════════════════════════════ */
+
+.popup-menu,
+.popup-menu-content,
+.popup-menu-boxpointer,
+.popup-menu-arrow,
+.popup-sub-menu,
+.popup-sub-menu-content,
+.popup-sub-menu-boxpointer,
+.candidate-popup-content,
+.quick-settings .popup-menu,
+.quick-settings .popup-menu-content {
+    background-color: #faf4ec !important;
+    color: #c2185b !important;
+    border: 1px solid #e8ded0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(194, 24, 91, 0.15) !important;
+}
+
+.popup-menu-arrow {
+    color: #faf4ec !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.popup-menu-item,
+.popup-sub-menu .popup-menu-item {
+    background-color: transparent !important;
+    color: #c2185b !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+}
+.popup-menu-item:hover,
+.popup-menu-item:focus {
+    background-color: #f2e6d9 !important;
+    color: #a01453 !important;
+}
+.popup-menu-item:active,
+.popup-menu-item:checked,
+.popup-menu-item.selected {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+}
+.popup-menu-item:insensitive { color: #b98a9c !important; }
+
+.popup-menu-item StIcon,
+.popup-menu-item .popup-menu-icon {
+    color: inherit !important;
+    icon-shadow: none !important;
+}
+.popup-menu-item StLabel,
+.popup-menu-item .popup-menu-item-label { color: inherit !important; }
+
+.popup-separator-menu-item,
+.popup-separator-menu-item-separator,
+.popup-menu-item-separator {
+    background-color: #e8ded0 !important;
+    border-color: #e8ded0 !important;
+}
+
+.popup-sub-menu-title,
+.popup-menu-item-header,
+.popup-menu .popup-menu-content > StLabel {
+    color: #c2185b !important;
+    font-weight: bold !important;
+}
+.popup-menu-icon { color: #c2185b !important; }
+
+.app-menu,
+.app-well-menu,
+.app-folder-menu,
+.window-menu,
+.window-button-menu,
+#windowMenu,
+.panel-menu,
+.panel-menu-content,
+.aggregate-menu,
+.aggregate-menu-content,
+.power-menu,
+.power-menu-content {
+    background-color: #faf4ec !important;
+    color: #c2185b !important;
+    border: 1px solid #e8ded0 !important;
+    border-radius: 12px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   QUICK SETTINGS
+   ════════════════════════════════════════════════════════════ */
+
+.quick-settings {
+    background-color: #faf4ec;
+    color: #c2185b;
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid #e8ded0;
+}
+
+/* Toggle inactivo */
+.quick-settings .quick-toggle:not(:checked) {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+    border: none !important;
+    border-radius: 12px;
+    padding: 6px 12px;
+    min-height: 36px;
+}
+.quick-settings .quick-toggle:not(:checked) StIcon,
+.quick-settings .quick-toggle:not(:checked) StLabel {
+    color: #c2185b !important;
+}
+
+/* Toggle activo — fondo rosa sólido, contenido blanco */
+.quick-toggle:checked,
+.quick-toggle:active {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px;
+    padding: 6px 12px;
+    min-height: 36px;
+}
+.quick-toggle:checked:hover,
+.quick-toggle:active:hover {
+    background-color: #a01453 !important;
+}
+
+.quick-toggle:checked StIcon,
+.quick-toggle:active StIcon,
+.quick-toggle:checked StLabel,
+.quick-toggle:active StLabel,
+.quick-toggle:checked .quick-toggle-icon,
+.quick-toggle:active .quick-toggle-icon,
+.quick-toggle:checked *,
+.quick-toggle:active * {
+    color: #ffffff !important;
+    icon-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.quick-toggle .quick-toggle-title { font-weight: bold; color: inherit; }
+.quick-toggle .quick-toggle-subtitle {
+    font-size: 9pt;
+    color: alpha(#c2185b, 0.7);
+}
+
+/* Flecha del toggle (>) */
+.quick-menu-toggle .quick-toggle-arrow,
+.quick-toggle-arrow {
+    background-color: #e8ded0 !important;
+    color: #c2185b !important;
+    border: none !important;
+    border-radius: 0 12px 12px 0;
+}
+.quick-menu-toggle .quick-toggle-arrow:hover {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+}
+.quick-menu-toggle:checked .quick-toggle-arrow,
+.quick-menu-toggle:active .quick-toggle-arrow {
+    background-color: #a01453 !important;
+    color: #ffffff !important;
+}
+
+/* Iconos redondos superiores */
+.quick-settings .icon-button,
+.quick-settings-grid .icon-button,
+.quick-settings .button {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 50%;
+}
+.quick-settings .icon-button StIcon,
+.quick-settings-grid .icon-button StIcon,
+.quick-settings .button StIcon {
+    color: #c2185b !important;
+    icon-shadow: none !important;
+}
+.quick-settings .icon-button:hover,
+.quick-settings-grid .icon-button:hover {
+    background-color: #ecd9e0 !important;
+}
+.quick-settings .icon-button:active,
+.quick-settings-grid .icon-button:active,
+.quick-settings .icon-button:checked {
+    background-color: #c2185b !important;
+}
+.quick-settings .icon-button:active StIcon,
+.quick-settings-grid .icon-button:active StIcon,
+.quick-settings .icon-button:checked StIcon {
+    color: #ffffff !important;
+}
+
+.quick-settings .power-item,
+.quick-settings-grid .power-item { color: #c2185b; }
+
+.quick-settings .quick-toggle-label,
+.quick-settings .quick-settings-grid StLabel { color: #c2185b; }
+
+/* Menús desplegables internos del Quick Settings */
+.quick-settings .popup-menu-content {
+    background-color: #faf4ec;
+    color: #c2185b;
+    border: 1px solid #e8ded0;
+    border-radius: 12px;
+}
+.quick-settings .popup-menu-item { color: #c2185b; }
+.quick-settings .popup-menu-item:hover,
+.quick-settings .popup-menu-item:focus { background-color: #f2e6d9; }
+.quick-settings .popup-menu-item:active,
+.quick-settings .popup-menu-item:checked {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+}
+
+/* Submenú específico de Quick Toggle (Conexiones cableadas, etc.) */
+.quick-toggle-menu,
+.quick-toggle-menu-content {
+    background-color: #faf4ec !important;
+    color: #c2185b !important;
+    border: 1px solid #e8ded0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(194, 24, 91, 0.15) !important;
+}
+.quick-toggle-menu .header,
+.quick-toggle-menu-header,
+.quick-toggle-menu .header .title,
+.quick-toggle-menu .header StLabel { color: #c2185b !important; }
+
+.quick-toggle-menu .header .icon,
+.quick-toggle-menu .header StIcon {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    icon-shadow: none !important;
+}
+
+.quick-toggle-menu .popup-menu-item,
+.quick-toggle-menu-item {
+    background-color: transparent !important;
+    color: #c2185b !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+}
+.quick-toggle-menu .popup-menu-item:hover,
+.quick-toggle-menu .popup-menu-item:focus {
+    background-color: #f2e6d9 !important;
+    color: #a01453 !important;
+}
+.quick-toggle-menu .popup-menu-item:active,
+.quick-toggle-menu .popup-menu-item:checked,
+.quick-toggle-menu .popup-menu-item.selected {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+}
+.quick-toggle-menu .popup-menu-item:insensitive { color: #b98a9c !important; }
+.quick-toggle-menu .popup-menu-item StIcon {
+    color: inherit !important;
+    icon-shadow: none !important;
+}
+.quick-toggle-menu .popup-separator-menu-item,
+.quick-toggle-menu .popup-separator-menu-item-separator {
+    background-color: #e8ded0 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SLIDER — solo color, geometría intacta
+   ════════════════════════════════════════════════════════════ */
+
+.quick-settings .slider,
+.quick-slider .slider,
+.slider {
+    color: #c2185b;
+    -barlevel-active-background-color: #c2185b;
+    -barlevel-overdrive-color: #a01453;
+    -barlevel-background-color: rgba(194, 24, 91, 0.20);
+    -barlevel-border-width: 0;
+    -barlevel-border-color: transparent;
+}
+
+.quick-settings .slider:hover,
+.quick-slider .slider:hover,
+.slider:hover {
+    color: #a01453;
+    -barlevel-active-background-color: #a01453;
+}
+
+.quick-settings .slider .handle,
+.quick-slider .slider .handle,
+.slider .handle,
+.slider-handle {
+    background-color: #ffffff;
+    border: 2px solid #c2185b;
+    box-shadow: none;
+}
+
+.quick-settings .slider .handle:hover,
+.quick-slider .slider .handle:hover,
+.slider .handle:hover,
+.slider-handle:hover {
+    background-color: #f8dbe4;
+    border-color: #a01453;
+}
+
+/* ════════════════════════════════════════════════════════════
+   ICONOS DEL PANEL — forzar color Kurumi
+   ════════════════════════════════════════════════════════════ */
+
+/* Todos los iconos del panel superior */
+#panel StIcon,
+#panel .system-status-icon,
+#panel .panel-button StIcon {
+    color: #c2185b !important;
+    icon-shadow: none !important;
+}
+
+/* Iconos del Quick Settings (batería, brillo, etc.) */
+.quick-settings .icon-button StIcon,
+.quick-settings-grid .icon-button StIcon,
+.quick-settings-grid .system-status-icon {
+    color: #c2185b !important;
+    icon-shadow: none !important;
+}
+
+/* Batería — forzar el color en todos los estados */
+.quick-settings-grid .power-item StIcon,
+.quick-settings-grid StIcon {
+    color: #c2185b !important;
+    icon-shadow: none !important;
+}
+
+/* Quitar el "warning color" amarillo del nivel bajo de batería */
+#panel .power-status StIcon,
+.quick-settings-grid .power-item.vertical StIcon {
+    color: #c2185b !important;
+    icon-shadow: none !important;
+}
+
+/* Icono de brillo y sus sliders */
+.quick-settings .slider StIcon,
+.quick-settings-grid StIcon {
+    color: #c2185b !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TOGGLES ACTIVOS — forzar fondo rosa + texto blanco
+   WiFi, Bluetooth, Modo de energía cuando están ON
+   ════════════════════════════════════════════════════════════ */
+
+/* Todas las variantes de "activo" que usa GNOME 46/51 */
+.quick-toggle:checked,
+.quick-toggle:active,
+.quick-toggle.checked,
+.quick-toggle.vertical:checked,
+.quick-settings .quick-toggle:checked,
+.quick-settings-grid .quick-toggle:checked,
+.quick-menu-toggle:checked,
+.quick-menu-toggle:active {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* El contenido interno — todo en blanco */
+.quick-toggle:checked StIcon,
+.quick-toggle:checked StLabel,
+.quick-toggle:checked .quick-toggle-title,
+.quick-toggle:checked .quick-toggle-subtitle,
+.quick-toggle:checked .quick-toggle-icon,
+.quick-toggle:checked .popup-menu-icon,
+.quick-toggle:checked .system-status-icon,
+.quick-toggle:checked *,
+.quick-toggle:active StIcon,
+.quick-toggle:active StLabel,
+.quick-toggle:active * {
+    color: #ffffff !important;
+    icon-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* El circulito del icono a la izquierda del toggle */
+.quick-toggle:checked .icon-button,
+.quick-toggle:checked .quick-toggle-icon {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+/* Hover sobre activo — ligeramente más oscuro */
+.quick-toggle:checked:hover,
+.quick-toggle.checked:hover {
+    background-color: #a01453 !important;
+}
+
+/* Flecha a la derecha del toggle activo */
+.quick-menu-toggle:checked .quick-toggle-arrow {
+    background-color: #a01453 !important;
+    color: #ffffff !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CALENDARIO / NOTIFICACIONES (menú del reloj)
+   ════════════════════════════════════════════════════════════ */
+
+.datemenu-popover,
+.datemenu-popover .popup-menu-content,
+.message-list,
+.message-list .popup-menu-content {
+    background-color: #faf4ec !important;
+    color: #c2185b !important;
+    border: 1px solid #e8ded0 !important;
+    border-radius: 16px !important;
+}
+
+/* Título "No hay notificaciones" */
+.message-list-placeholder,
+.message-list .message-list-placeholder,
+.message-list StLabel {
+    color: #b98a9c !important;
+}
+.message-list-placeholder StIcon {
+    color: #b98a9c !important;
+}
+
+/* Botones y cajas dentro del calendario */
+.datemenu-today-button,
+.datemenu-today-button StLabel {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+    border: none !important;
+    border-radius: 12px !important;
+}
+.datemenu-today-button:hover {
+    background-color: #ecd9e0 !important;
+}
+.datemenu-date-label {
+    color: #c2185b !important;
+}
+
+/* Widget del calendario */
+.calendar,
+.calendar-month-label,
+.calendar-day-heading {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+}
+.calendar-month-label { font-weight: bold !important; }
+
+/* Días del calendario */
+.calendar-day,
+.calendar-day-base {
+    color: #c2185b !important;
+    border-radius: 999px !important;
+}
+.calendar-day:hover,
+.calendar-day-base:hover {
+    background-color: #ecd9e0 !important;
+    color: #a01453 !important;
+}
+.calendar-other-month-day {
+    color: #b98a9c !important;
+}
+.calendar-today {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    border-radius: 999px !important;
+}
+.calendar-today:hover {
+    background-color: #a01453 !important;
+}
+
+/* Botones de mes (flechas < >) */
+.calendar-month-button,
+.calendar StButton {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+    border: none !important;
+    border-radius: 50% !important;
+}
+.calendar-month-button:hover {
+    background-color: #c2185b !important;
+    color: #ffffff !important;
+}
+
+/* Widget "Hoy" / eventos */
+.events-button,
+.events-button StLabel,
+.events-list {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+}
+.events-button:hover {
+    background-color: #ecd9e0 !important;
+}
+
+/* Widget "Relojes del mundo" */
+.world-clocks-button,
+.world-clocks-header,
+.world-clock-row,
+.world-clocks-button StLabel {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+}
+.world-clocks-button:hover {
+    background-color: #ecd9e0 !important;
+}
+.world-clocks-header { font-weight: bold !important; }
+
+/* Widget "Meteorología" */
+.weather-button,
+.weather-header,
+.weather-forecast-time,
+.weather-forecast-temp,
+.weather-button StLabel {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+}
+.weather-button:hover {
+    background-color: #ecd9e0 !important;
+}
+.weather-header { font-weight: bold !important; }
+
+/* Notificaciones individuales */
+.message,
+.message-content,
+.message-box,
+.message-title,
+.message-body,
+.message-source-title,
+.message-source-time {
+    color: #c2185b !important;
+}
+.message {
+    background-color: #f2e6d9 !important;
+    border-radius: 12px !important;
+}
+.message:hover {
+    background-color: #ecd9e0 !important;
+}
+.message-title { font-weight: bold !important; }
+.message-source-time { color: #b98a9c !important; }
+.message-media-control {
+    background-color: #f2e6d9 !important;
+    color: #c2185b !important;
+    border-radius: 50% !important;
+}
+
+/* Icono de campana del placeholder */
+.message-list-placeholder StIcon {
+    color: #b98a9c !important;
+    icon-shadow: none !important;
+}

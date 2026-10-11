@@ -1,0 +1,9 @@
+[X-GNOME-Metatheme]
+Name=Zaphkiel
+Type=X-GNOME-Metatheme
+Comment=Tema Kurumi (auto claro/oscuro)
+Encoding=UTF-8
+GtkTheme=Zaphkiel
+IconTheme=AnimeApps
+CursorTheme=Luka_Static
+CursorSize=24

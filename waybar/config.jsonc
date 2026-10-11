@@ -1,0 +1,114 @@
+{
+    "layer": "top",
+    "position": "bottom", // Estilo tradicional abajo
+    "height": 34,
+    "spacing": 4,
+    "modules-left": ["wlr/taskbar"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "clock", "pulseaudio", "network", "battery", "custom/brightness", "mpris"],
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 22,
+        "tooltip-format": "{title}",
+	"icon-theme": "AnimeApps",
+        "on-click": "activate",
+        "on-click-middle": "close"
+        /*"rewrite": {
+            "Firefox Input": "Firefox"
+        }*/
+    }, 
+
+    "clock": {
+       	 "format": "{:%H:%M}", // Quitamos el icono de texto para poner tu imagen por CSS
+	 "format-alt": "{:%d/%m/%Y}",
+	 "locale": "C", // Esto evita que el módulo se desactive por errores de idioma
+	 "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}%",
+        "format-icons": { "default": ["", "", ""] },
+	"on-click": "kcmshell6 kcm_pulseaudio", // Abre el configurador al hacer clic izquierdo
+	"on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle", // Opcional: Silenciar con clic derecho
+	"format-icons": {
+		"default": ["  ", "  ", "  "]
+	}
+    },
+
+    "network": {
+        "format-wifi": "{essid}",
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "on-click": "nm-connection-editor" // Abre el gestor de redes de GNOME/KDE
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+	"show-passive-items": true
+    },
+
+    /*"battery": {
+    	"states": {
+		"warning": 20,
+		"critical": 10
+	},
+	"format": "{icon} {capacity}%",
+	"format-charging": "\uf0e7 {capacity}%",
+	"format-plugged": "\uf1e6 {capacity}%",
+	"format-alt": "{icon} {time}",
+	"format-icons": ["\ud83b\udc8e", "\ud83b\udc7a", "\ud83b\udc7b", "\ud83b\udc7c", "\ud83b\udc7d", "\ud83b\udc7e", "\ud83b\udc7f", "\ud83b\udc80", "\ud83b\udc81", "\ud83b\udc82", "\ud83b\udc79"]
+      },*/
+
+      "battery": {
+	      "states": {
+		      "warning": 20,
+		      "critical": 10
+	      },
+	      "format": "{icon} {capacity}%",
+	      "format-charging": "\uf0e7 {capacity}%",   
+	      "format-plugged": "\uf1e6 {capacity}%",
+	      "format-alt": "{icon} {capacity}% ({time})",
+	      "format-icons": ["", "", "", "", ""],
+	      // "tooltip-format": "{timeTo} ({capacity}%)",
+	      "tooltip-format-charging": "{timeTo}",
+	      "tooltip-format-discharging": "{timeTo}"
+      },
+      
+
+    "mpris": {
+	// Eliminamos el {player_icon} para poner el tuyo por CSS
+    	"format": "{title} - {artist}", 
+	"format-paused": "<i>{title}</i>",
+    	"player-icons": {
+        	"default": "" // Dejar vacío
+    	}
+     },
+
+     "backlight": {
+     	"device": "intel_backlight",
+	"format": "{percent}%",
+	"on-scroll-up": "brightnessctl set 1%+ && ddcutil --bus 2 setvcp 10 + 1 & ddcutil --bus 11 setvcp 10 + 1 & ddcutil --bus 16 setvcp 10 + 1 &",
+	"on-scroll-down": "brightnessctl set 1%- && ddcutil --bus 2 setvcp 10 - 1 & ddcutil --bus 11 setvcp 10 - 1 & ddcutil --bus 16 setvcp 10 - 1 &",
+	"on-scroll-up": "brightnessctl set 5%+ && ~/.config/hypr/scripts/sincronizar_brillo.sh",
+	"on-scroll-down": "brightnessctl set 5%- && ~/.config/hypr/scripts/sincronizar_brillo.sh",
+	"smooth-scrolling-threshold": 1,
+	"tooltip": false
+	},
+
+	"custom/brightness": {
+		"format": "{icon}{text}%",
+		"exec": "~/.config/waybar/brightness-per-monitor.sh get",
+		"on-scroll-up": "~/.config/waybar/brightness-per-monitor.sh up",
+		"on-scroll-down": "~/.config/waybar/brightness-per-monitor.sh down",
+		"signal": 8,
+		"tooltip": true,
+		"tooltip-format": "Brillo del monitor enfocado: {text}%",
+		"interval":10
+	}
+
+}
+

@@ -1,0 +1,12 @@
+[Unit]
+Description=Zaphkiel theme sync (GNOME light/dark toggle)
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/zaphkiel-sync.sh
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

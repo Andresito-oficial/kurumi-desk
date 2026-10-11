@@ -1,0 +1,25 @@
+{
+  "hyprland_events": {
+    "openwindow": "button-pressed",
+    "closewindow": "button-pressed",
+    "fullscreen": "button-toggle-on",
+    "workspace": "desktop-switch",
+    "workspacev2": "desktop-switch",
+    "bell": "bell",
+    "urgent": "dialog-warning",
+    "minimized": "button-toggle-off",
+    "changefloatingmode": "button-toggle-on",
+    "monitoradded": "desktop-login",
+    "monitorremoved": "desktop-logout"
+  },
+  "notification_sounds": {
+    "discord": "message-new-instant",
+    "telegram": "message-new-instant",
+    "signal": "message-new-instant",
+    "thunderbird": "message-new-instant",
+    "nm-applet": "dialog-information",
+    "volume-control": "dialog-information"
+  },
+  "default_notification_sound": "message-new-instant",
+  "default_hyprland_sound": "button-pressed"
+}

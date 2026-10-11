@@ -1,0 +1,87 @@
+/* Estilo Base: Inspirado en tu Waybar Kurumi */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+    transition: 200ms;
+}
+
+/* El panel lateral completo */
+.control-center {
+    background: rgba(15, 15, 15, 0.9); /* Negro traslúcido igual que Waybar */
+    border: 2px solid rgba(255, 0, 60, 0.6); /* Borde rojo Kurumi */
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+}
+
+/* Título del panel */
+.control-center-title {
+    color: #ffb8c6; /* Rosa suave de tu reloj */
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* Las burbujas de notificación individuales */
+.notification {
+    background: rgba(255, 255, 255, 0.05); /* Fondo sutil de tus módulos */
+    border-radius: 10px;
+    margin: 6px;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Efecto hover en las notificaciones */
+.notification:hover {
+    background: rgba(255, 0, 60, 0.2); /* Brillo rojo al pasar el mouse */
+}
+
+/* Título y cuerpo de la notificación */
+.notification-content {
+    margin: 8px;
+}
+
+.notification-default-action {
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.summary {
+    color: #ff003c; /* Rojo carmesí para el título */
+    font-weight: bold;
+}
+
+.body {
+    color: #ffffff;
+}
+
+/* Botones de acción (Cerrar, Limpiar todo) */
+.control-center-button {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 5px;
+}
+
+.control-center-button:hover {
+    background: #ff003c; /* Rojo Kurumi al hover */
+    color: white;
+}
+
+/* Botón de "No molestar" */
+.dnd-button {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: #a6e3a1; /* Verde como tu red */
+}
+
+.dnd-button:checked {
+    background: rgba(255, 0, 60, 0.4);
+    color: #ffffff;
+}
+
+/* Widgets (Cajitas de la parte inferior del panel) */
+.widget-title {
+    color: #ffb8c6;
+    background: transparent;
+}
+

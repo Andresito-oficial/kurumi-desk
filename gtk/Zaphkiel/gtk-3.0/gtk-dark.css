@@ -1,0 +1,87 @@
+/* Zaphkiel-Dark · GTK3 (noche) — fondo negro, texto rosa pastel */
+
+@define-color theme_bg_color            #050000;
+@define-color theme_base_color          #0d0003;
+@define-color theme_fg_color            #ffb8c6;
+@define-color theme_text_color          #ffb8c6;
+@define-color theme_selected_bg_color   #ff003c;
+@define-color theme_selected_fg_color   #050000;
+@define-color insensitive_bg_color      #0a0002;
+@define-color insensitive_fg_color      #6b0018;
+@define-color borders                   #1f0008;
+@define-color warning_color             #ff6b8a;
+@define-color error_color               #ff003c;
+@define-color success_color             #5fff9f;
+
+window, .background { background-color: @theme_bg_color; color: @theme_fg_color; }
+
+headerbar, .titlebar {
+    background-image: none;
+    background-color: #0d0003;
+    color: @theme_fg_color;
+    border-bottom: 1px solid @borders;
+    box-shadow: none;
+}
+headerbar:backdrop { color: alpha(@theme_fg_color, 0.6); }
+
+button {
+    background-image: none;
+    background-color: #140005;
+    color: @theme_fg_color;
+    border: 1px solid @borders;
+    border-radius: 6px;
+    padding: 5px 12px;
+}
+button:hover { background-color: #1f0008; border-color: @theme_selected_bg_color; }
+button:active, button:checked {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+button:disabled { background-color: @insensitive_bg_color; color: @insensitive_fg_color; }
+
+entry, spinbutton, searchentry {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+    border: 1px solid @borders;
+    border-radius: 6px;
+    padding: 5px 8px;
+    caret-color: @theme_selected_bg_color;
+}
+entry:focus, spinbutton:focus, searchentry:focus {
+    border-color: @theme_selected_bg_color;
+    box-shadow: 0 0 0 2px alpha(@theme_selected_bg_color, 0.35);
+}
+entry selection { background-color: @theme_selected_bg_color; color: @theme_selected_fg_color; }
+
+treeview, list, .view { background-color: @theme_base_color; color: @theme_text_color; }
+treeview:selected, list row:selected, .view:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+notebook > header tab {
+    background-color: #0d0003;
+    color: alpha(@theme_fg_color, 0.7);
+    padding: 6px 12px;
+}
+notebook > header tab:checked {
+    background-color: @theme_base_color;
+    color: @theme_fg_color;
+    border-bottom: 2px solid @theme_selected_bg_color;
+}
+
+scrollbar slider {
+    background-color: alpha(@theme_fg_color, 0.35);
+    border-radius: 8px;
+    min-width: 6px; min-height: 6px;
+}
+scrollbar slider:hover { background-color: @theme_selected_bg_color; }
+
+tooltip {
+    background-color: #0d0003;
+    color: #ffb8c6;
+    border: 1px solid @theme_selected_bg_color;
+    border-radius: 6px;
+}
+
+link, *:link { color: @theme_selected_bg_color; }

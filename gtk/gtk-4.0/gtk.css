@@ -1,0 +1,48 @@
+/* Zaphkiel · GTK4 / libadwaita (día) — fondo crema, texto rosa */
+
+@define-color accent_color            #c2185b;
+@define-color accent_bg_color         #c2185b;
+@define-color accent_fg_color         #ffffff;
+
+@define-color window_bg_color         #faf4ec;
+@define-color window_fg_color         #c2185b;
+
+@define-color view_bg_color           #fffdf9;
+@define-color view_fg_color           #c2185b;
+
+@define-color headerbar_bg_color      #f2e6d9;
+@define-color headerbar_fg_color      #c2185b;
+@define-color headerbar_border_color  #e8ded0;
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color   rgba(194,24,91,0.10);
+
+@define-color sidebar_bg_color        #f2e6d9;
+@define-color sidebar_fg_color        #c2185b;
+@define-color sidebar_backdrop_color  #ecdfd0;
+@define-color sidebar_shade_color     rgba(194,24,91,0.08);
+
+@define-color secondary_sidebar_bg_color #ecdfd0;
+@define-color secondary_sidebar_fg_color #c2185b;
+
+@define-color card_bg_color           #fffdf9;
+@define-color card_fg_color           #c2185b;
+@define-color card_shade_color        rgba(194,24,91,0.10);
+
+@define-color popover_bg_color        #fffdf9;
+@define-color popover_fg_color        #c2185b;
+
+@define-color dialog_bg_color         #fffdf9;
+@define-color dialog_fg_color         #c2185b;
+
+@define-color destructive_color       #a01453;
+@define-color destructive_bg_color    #a01453;
+@define-color destructive_fg_color    #ffffff;
+
+@define-color success_color           #1a7a3d;
+@define-color warning_color           #c2185b;
+@define-color error_color             #a01453;
+
+@define-color borders                 #e8ded0;
+@define-color link_color              #c2185b;
+@define-color link_visited_color      #a01453;
+@import 'colors.css';

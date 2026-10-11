@@ -1,0 +1,237 @@
+/* --- Estilo General — Kurumi DÍA --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(250, 244, 236, 0.90);   /* Crema translúcido */
+    border-top: 2px solid rgba(194, 24, 91, 0.6);  /* Línea rosa frambuesa */
+    color: #8b0d47;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* --- Módulos --- */
+#taskbar button,
+#clock,
+#network,
+#pulseaudio,
+#tray,
+#window,
+#mpris {
+    padding: 0 12px;
+    margin: 4px 4px;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#taskbar button:hover,
+#network:hover,
+#pulseaudio:hover,
+#mpris:hover,
+#battery:hover,
+#custom-brightness:hover,
+#clock:hover {
+    background-color: rgba(194, 24, 91, 0.25);
+}
+
+#taskbar button.active {
+    background-color: rgba(194, 24, 91, 0.15);
+    border-bottom: 2px solid #c2185b;
+}
+
+#clock {
+    padding-left: 34px;
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/clocks.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    color: #c2185b;
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+}
+
+#network {
+    padding-left: 34px;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+    margin: 4px 4px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 17px;
+    color: #1a7a3d;
+    transition: all 0.3s ease;
+}
+
+#network.wifi {
+    background-image: url("file:///usr/share/icons/breeze/status/22/network-wireless-connected-100.svg");
+}
+#network.ethernet {
+    background-image: url("file:///usr/share/icons/breeze/devices/22/network-wired.svg");
+}
+#network.wifi.linked {
+    background-image: url("file:///usr/share/icons/breeze/status/48/network-wireless-connected-75.svg");
+}
+#network.wifi.connected {
+    background-image: url("file:///usr/share/icons/breeze/status/48/network-wireless-connected-50.svg");
+}
+#network.wifi.associated {
+    background-image: url("file:///usr/share/icons/breeze/status/48/network-wireless-connected-25.svg");
+}
+#network.disconnected {
+    color: #b3003c;
+    background-image: url("file:///usr/share/icons/breeze/status/48/network-disconnect.svg");
+}
+
+#pulseaudio {
+    color: #8b0d47;
+    padding-left: 34px;
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/orca.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+}
+
+#tray {
+    margin-right: 8px;
+    border: 2px solid #c2185b;
+    min-width: 50px;
+}
+
+#window {
+    background: transparent;
+    font-style: italic;
+}
+
+#mpris {
+    padding-left: 34px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    color: #c2185b;
+}
+
+#mpris.spotify {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/spotify-client.png");
+}
+#mpris.opera, #mpris.chromium {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/opera-gx.png");
+}
+#mpris.firefox {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/firefox.png");
+}
+#mpris.vlc {
+    background-image: url("file:///usr/share/icons/breeze/apps/48/vlc.svg");
+    opacity: 0.8;
+}
+#mpris.kdeconnect {
+    background-image: url("file:///usr/share/icons/breeze/devices/48/kdeconnect.svg");
+    opacity: 0.8;
+}
+#mpris.vlc:hover, #mpris.kdeconnect:hover {
+    opacity: 1;
+    background-color: rgba(194, 24, 91, 0.3);
+}
+
+#battery { color: #8b0d47; }
+#battery.warning {
+    color: #c2185b;
+    border-bottom: 2px solid rgba(194, 24, 91, 0.4);
+}
+#battery.critical:not(.charging) {
+    color: #b3003c;
+    font-weight: bold;
+    animation-name: blink_kurumi;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#battery.charging {
+    color: #8b0d47;
+    border-bottom: 2px solid #c2185b;
+}
+
+@keyframes blink_kurumi {
+    from { background-color: rgba(194, 24, 91, 0.06); }
+    to   {
+        background-color: rgba(194, 24, 91, 0.3);
+        box-shadow: 0 0 10px rgba(194, 24, 91, 0.6);
+    }
+}
+
+#backlight, #backlight-slider {
+    padding: 0 12px;
+    margin: 4px 4px;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#backlight {
+    padding-left: 34px;
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/origamis-sephirah.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    color: #8b0d47;
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+    text-shadow: 0 0 5px rgba(194, 24, 91, 0.3);
+    transition: all 0.3s ease;
+}
+
+#backlight:hover {
+    background-color: rgba(194, 24, 91, 0.25);
+    color: #c2185b;
+    text-shadow: 0 0 8px rgba(194, 24, 91, 0.6);
+}
+
+#backlight-slider trough {
+    min-width: 60px;
+    min-height: 8px;
+    background-color: rgba(194, 24, 91, 0.15);
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+#backlight-slider highlight {
+    background-color: #c2185b;
+    border-radius: 5px;
+}
+#backlight-slider slider {
+    background-color: #ffffff;
+    border-radius: 50%;
+    min-height: 10px;
+    min-width: 10px;
+}
+
+#custom-brightness {
+    padding-left: 34px;
+    padding-right: 8px;
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/origamis-sephirah.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    color: #8b0d47;
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(194, 24, 91, 0.06);
+    border-radius: 10px;
+    text-shadow: 0 0 5px rgba(194, 24, 91, 0.3);
+    transition: all 0.3s ease;
+}
+
+#custom-brightness:hover {
+    background-color: rgba(194, 24, 91, 0.25);
+    color: #c2185b;
+    text-shadow: 0 0 8px rgba(194, 24, 91, 0.6);
+}

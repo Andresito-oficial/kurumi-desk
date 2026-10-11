@@ -1,0 +1,285 @@
+/* --- Estilo General --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(15, 15, 15, 0.85); /* Negro traslúcido */
+    border-top: 2px solid rgba(255, 0, 60, 0.6); /* Línea roja Kurumi */
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* --- Módulos (Cajitas) --- */
+#taskbar button,
+#clock,
+#network,
+#pulseaudio,
+#tray,
+#window,
+#mpris {
+    padding: 0 12px;
+    margin: 4px 4px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el ratón */
+#taskbar button:hover,
+#network:hover,
+#pulseaudio:hover,
+#mpris:hover,
+#battery:hover,
+#custom-brightness:hover,
+#clock:hover {
+    background-color: rgba(255, 0, 60, 0.3); /* Brillo rojo al pasar el mouse */
+}
+
+/* --- Personalización Específica --- */
+
+#taskbar button.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-bottom: 2px solid #ff003c; /* Indicador de app activa */
+}
+
+#clock {
+    padding-left: 34px; /* Espacio para el icono */
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/clocks.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px; /* Ajusta el tamaño de Zaphkiel aquí */
+    color: #ffb8c6; /* Rosa suave/blanco */
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+/* --- Estilo de Red Adaptado --- */
+#network {
+    padding-left: 34px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin: 4px 4px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 17px;
+    /* Aplicamos el verde solo al texto */
+    color: #a6e3a1; 
+    transition: all 0.3s ease;
+}
+
+#network.wifi {
+    background-image: url("file:///usr/share/icons/breeze-dark/status/22/network-wireless-connected-100.svg");
+}
+
+#network.ethernet {
+    background-image: url("file:///usr/share/icons/breeze-dark/devices/22/network-wired.svg");
+}
+
+/* WiFi - Señal Buena (60-80%) */
+#network.wifi.linked {
+    background-image: url("file:///usr/share/icons/breeze-dark/status/48/network-wireless-connected-75.svg");
+}
+
+/* WiFi - Señal Media (40-60%) */
+#network.wifi.connected {
+    background-image: url("file:///usr/share/icons/breeze-dark/status/48/network-wireless-connected-50.svg");
+}
+
+/* WiFi - Señal Baja (0-40%) */
+#network.wifi.associated {
+    background-image: url("file:///usr/share/icons/breeze-dark/status/48/network-wireless-connected-25.svg");
+}
+
+#network.disconnected {
+    color: #f38ba8; /* Rojo cuando falla */
+    background-image: url("file:///usr/share/icons/breeze/status/48/network-disconnect.svg");
+}
+
+#pulseaudio {
+    color: #89b4fa; /* Azul para el audio */
+    padding-left: 34px;
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/orca.png"); /* Cambia por tu nombre de archivo */
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+}
+
+#tray {
+    margin-right: 8px;
+    border: 2px solid red; /* Temporary: to see if the module is there */
+    min-width: 50px;
+}
+
+/* Ocultar el nombre de la ventana si está vacío */
+#window {
+    background: transparent;
+    font-style: italic;
+}
+
+/* --- Reproductor Multimedia (MPRIS) --- */
+#mpris {
+    padding-left: 34px; /* Espacio para el icono a la izquierda */
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    color: #f5c2e7; /* Rosa suave */
+}
+
+/* Iconos Personalizados (Asegúrate de que las rutas sean correctas) */
+#mpris.spotify {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/spotify-client.png");
+}
+
+#mpris.opera, #mpris.chromium {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/opera-gx.png");
+}
+
+#mpris.firefox {
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/firefox.png");
+}
+/* Reemplaza los bloques de vlc y kdeconnect que dan error por estos: */
+#mpris.vlc {
+    background-image: url("file:///usr/share/icons/breeze/apps/48/vlc.svg");
+    opacity: 0.8; /* En lugar de filter, usamos opacidad para suavizar */
+}
+
+#mpris.kdeconnect {
+    background-image: url("file:///usr/share/icons/breeze/devices/48/kdeconnect.svg");
+    opacity: 0.8;
+}
+
+/* Para que cambien de color al pasar el mouse sin usar filter */
+#mpris.vlc:hover, #mpris.kdeconnect:hover {
+    opacity: 1;
+    background-color: rgba(255, 0, 60, 0.4);
+}
+
+/* --- Módulo de Batería Estilo Kurumi --- */
+#battery {
+    color: #ffffff; /* Blanco para lectura clara */
+}
+
+/* Estado de advertencia - Rojo suave */
+#battery.warning {
+    color: #ff5f7e; 
+    border-bottom: 2px solid rgba(255, 0, 60, 0.4);
+}
+
+/* Estado crítico - Rojo Kurumi con parpadeo */
+#battery.critical:not(.charging) {
+    color: #ff003c;
+    font-weight: bold;
+    animation-name: blink_kurumi;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Cargando - Brillo Blanco/Grisáceo para no romper el rojo */
+#battery.charging {
+    color: #ffffff;
+    border-bottom: 2px solid #ff003c;
+}
+
+/* Animación de parpadeo carmesí */
+@keyframes blink_kurumi {
+    from {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    to {
+        background-color: rgba(255, 0, 60, 0.4); /* Brillo de "reloj" de Kurumi */
+        box-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
+    }
+}
+
+/* --- Módulo de Brillo (Backlight) Estilo Kurumi --- */
+#backlight, #backlight-slider {
+    padding: 0 12px;
+    margin: 4px 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#backlight {
+    padding-left: 34px;
+    /* Fuente de energía: Sephirah de Origami */
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/origamis-sephirah.png"); 
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    
+    /* Blanco rosado para eliminar el amarillo y armonizar con el cristal */
+    color: #ffdce3; 
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    
+    /* Resplandor rojo carmesí sutil */
+    text-shadow: 0 0 5px rgba(255, 0, 60, 0.4);
+    transition: all 0.3s ease;
+}
+
+#backlight:hover {
+    background-color: rgba(255, 0, 60, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+}
+
+/* --- Ajuste del Slider para que no desentone --- */
+#backlight-slider trough {
+    min-width: 60px; /* Un poco más corto para no saturar la barra */
+    min-height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+
+#backlight-slider highlight {
+    background-color: #ff003c; /* Rojo carmesí Kurumi */
+    border-radius: 5px;
+}
+
+#backlight-slider slider {
+    background-color: #ffffff;
+    border-radius: 50%;
+    min-height: 10px;
+    min-width: 10px;
+}
+
+#custom-brightness {
+    padding-left: 34px;
+    padding-right: 8px;
+    /* Fuente de energía: Sephirah de Origami */
+    background-image: url("file:///home/andres/.icons/AnimeApps/apps/origamis-sephirah.png"); 
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px;
+    
+    /* Blanco rosado para eliminar el amarillo y armonizar con el cristal */
+    color: #ffdce3; 
+    margin: 4px 4px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    
+    /* Resplandor rojo carmesí sutil */
+    text-shadow: 0 0 5px rgba(255, 0, 60, 0.4);
+    transition: all 0.3s ease;
+}
+
+#custom-brightness:hover {
+    background-color: rgba(255, 0, 60, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+}
