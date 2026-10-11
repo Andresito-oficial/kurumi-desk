@@ -1,29 +1,29 @@
-"kurumi-desk/
+kurumi-desk/
 ├── README.md
 ├── LICENSE
 ├── hypr/
 │   ├── hyprland.conf
 │   ├── hyprlock.conf
 │   ├── hyprpaper.conf
+│   ├── sound-map.json               
 │   └── scripts/
+│       ├── hypr-sound-daemon.py     
+│       └── logout-sound.sh          
 ├── waybar/
 ├── gtk/
 │   ├── Zaphkiel/
 │   ├── Zaphkiel-Dark/
 │   └── gtk-4.0/
 ├── gnome-shell/
-│   └── (los CSS que hicimos)
 ├── sounds/
 │   └── Moesound_iori/
 ├── gifs/
-│   ├── nightmare/
-│   └── crimson-nightmare/
 ├── vim/
-│   └── tokisaki_kurumi.vim
 ├── scripts/
 │   ├── zaphkiel-sync.sh
-│   ├── zaphkiel_nightmare.sh
-│   └── ...
+│   └── zaphkiel_nightmare.sh
 ├── systemd/
 │   └── user/
-└── install.sh"
+│       ├── zaphkiel-sync.service
+│       └── hypr-sound-daemon.service <-- + Añadir
+└── install.sh
